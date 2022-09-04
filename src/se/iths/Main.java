@@ -3,14 +3,16 @@ package se.iths;
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
 
         //System.out.println(menu());
 
-        int[] userData = new int[]{2, 2, 23, 5, 6, 3,1,0,0,0, 7};//userInput();
-        minMax(userData);
+        //int[] userData = userInput();
+        //userInput();
+        //minMax(userInput());
         //sortering(userData);
     }
 
@@ -75,22 +77,26 @@ public class Main {
         // Creates a new array and asks user for data.
 
         Scanner sc = new Scanner(System.in);
-        int[] newUserData = new int[22];
+        int[] newUserData = new int[23];
 
 
         while (true) {
-            System.out.println("Ange vilken timme vill du lägga in pris för? (00,01,02 osv.)");
-            int hour = sc.nextInt();
 
-            System.out.println("Ange priset för timme " + hour + "( ange i hela ören.)");
-            newUserData[hour - 1] = sc.nextInt();
+            for (int i = 0; i < newUserData.length; i++) {
 
-            System.out.println("Vill du ange fler priser? (Y/N)");
-            String morePrices = sc.next().toUpperCase();
+                System.out.println("Ange priset för timme " + i  + " (ange i hela ören.)");
+                newUserData[i] = sc.nextInt();
+            }
+            for (int i = 0; i < newUserData.length; i++) {
+                System.out.println("Du angav: " + newUserData[i] +" for timme "+ i);
+            }
 
-            if (morePrices.equals("Y"))
+            System.out.println("Vill du ange priserna på nytt? (Y/N)");
+            String pricesAgain = sc.next().toUpperCase();
+
+            if (pricesAgain.equals("Y"))
                 continue;
-            else if (morePrices.equals("N"))
+            else if (pricesAgain.equals("N"))
                 break;
             else {
                 System.out.println("Fel input (Y/N) du åker tillbaka till menyn");
@@ -117,19 +123,11 @@ public class Main {
 
         // Flytta saker till egna methoder.
 
-        //Import userData and find min,max and average prices.
+        //Import userData and find min,max and average prices and print them.
 
-        int minPrice = 0;
-        int maxPrice = 0;
-        double averagePrice = 0;
-
-        for (int i = 0; i < userData.length; i++) {
-            if (userData[i] != 0) {
-                minPrice = Arrays.stream(userData).min().getAsInt();
-                maxPrice = Arrays.stream(userData).max().getAsInt();
-                averagePrice = Arrays.stream(userData).average().getAsDouble();
-            }
-        }
+           int minPrice = Arrays.stream(userData).min().getAsInt();
+           int maxPrice = Arrays.stream(userData).max().getAsInt();
+           double averagePrice = Arrays.stream(userData).average().getAsDouble();
 
         System.out.println("Lägsta priset är " + minPrice);
         System.out.println("Högsta priset är " + maxPrice);
