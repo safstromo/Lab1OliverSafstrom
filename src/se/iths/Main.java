@@ -1,21 +1,38 @@
 package se.iths;
 
-import java.sql.SQLOutput;
+
 import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Enumeration;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
+        Hour[] hour = new Hour[24];
+
+        createHourObj(hour);
+
+
+        System.out.println(hour[0].getName());
+        System.out.println(hour[5].getName());
 
         //System.out.println(menu());
-
+        // int[] userData = new int[]{2,43,5,6,7,4,54,76,67,34,4,65,65,87,4,4,32,432,45,45,12,324,43,};
         //int[] userData = userInput();
         //userInput();
         //minMax(userInput());
-        //sortering(userData);
+        //  sortering(userData);
     }
 
+    public static void createHourObj(Hour[] hour) {
+
+        for (int i = 0; i < hour.length; i++) {
+            hour[i] = new Hour();
+        }
+        for (int i = 0; i < hour.length; i++) {
+            hour[i].setName("hour" + i);
+        }
+    }
 
     public static String menu() {
 
@@ -84,11 +101,11 @@ public class Main {
 
             for (int i = 0; i < newUserData.length; i++) {
 
-                System.out.println("Ange priset för timme " + i  + " (ange i hela ören.)");
+                System.out.println("Ange priset för timme " + i + " (ange i hela ören.)");
                 newUserData[i] = sc.nextInt();
             }
             for (int i = 0; i < newUserData.length; i++) {
-                System.out.println("Du angav: " + newUserData[i] +" for timme "+ i);
+                System.out.println("Du angav: " + newUserData[i] + " for timme " + i);
             }
 
             System.out.println("Vill du ange priserna på nytt? (Y/N)");
@@ -125,9 +142,9 @@ public class Main {
 
         //Import userData and find min,max and average prices and print them.
 
-           int minPrice = Arrays.stream(userData).min().getAsInt();
-           int maxPrice = Arrays.stream(userData).max().getAsInt();
-           double averagePrice = Arrays.stream(userData).average().getAsDouble();
+        int minPrice = Arrays.stream(userData).min().getAsInt();
+        int maxPrice = Arrays.stream(userData).max().getAsInt();
+        double averagePrice = Arrays.stream(userData).average().getAsDouble();
 
         System.out.println("Lägsta priset är " + minPrice);
         System.out.println("Högsta priset är " + maxPrice);
@@ -141,11 +158,20 @@ public class Main {
 //        01-02 26 öre
 //        05-06 30 öre
 //        02-03 40 öre
+        Arrays.sort(userData);
         for (int price : userData) {
-            System.out.println(userData[price] + "-" + userData[price]);
             System.out.println(price);
         }
+
     }
+//        for (int i = 0; i < userData.length ; i++) {
+//
+//            if (i <= i + 1) {
+//                System.out.println(userData[i] + i);
+//                i++;
+//            }
+//        }
+
 
     public static void ladda4h() {
 //        Om man har en elbil som man vill ladda så vill man kanske göra det när priset är som billigast på
