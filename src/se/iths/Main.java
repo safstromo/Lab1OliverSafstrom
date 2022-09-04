@@ -1,8 +1,6 @@
 package se.iths;
 
-
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +9,7 @@ public class Main {
         createHourObj(hour);
         userInput(hour);
         minMax(hour);
-
+        sortering(hour);
         //System.out.println(menu());
         // int[] userData = new int[]{2,43,5,6,7,4,54,76,67,34,4,65,65,87,4,4,32,432,45,45,12,324,43,};
         //int[] userData = userInput();
@@ -132,7 +130,7 @@ public class Main {
         maxPrice = getMaxPrice(hours, maxPrice);
         totalPrice = getTotalPrice(hours, totalPrice);
 
-        double averagePrice = (double)totalPrice / 24.0;
+        double averagePrice = (double) totalPrice / 24.0;
 
         System.out.println("Lägsta priset är " + minPrice);
         System.out.println("Högsta priset är " + maxPrice);
@@ -169,16 +167,22 @@ public class Main {
         return minPrice;
     }
 
-    public static void sortering(int[] userData) {
+    public static void sortering(Hour[] hours) {
 //        Skriv ut timmarna och priset för dessa sorterade efter billigast till dyrast pris. Ex:
 //        00-01 23 öre
 //        01-02 26 öre
 //        05-06 30 öre
 //        02-03 40 öre
-        Arrays.sort(userData);
-        for (int price : userData) {
-            System.out.println(price);
-        }
+        Arrays.sort(hours, new Comparator<Hour>() {
+            @Override
+            public int compare(Hour o1, Hour o2) {
+                return Double.compare(o1.getPrice(), o2.getPrice());
+            }
+        });
+        int cheapest = hours[0].getPrice();
+        String cheapest1 = hours[0].getName();
+        System.out.println(cheapest1 + " " + cheapest + " öre");
+
 
     }
 //        for (int i = 0; i < userData.length ; i++) {
