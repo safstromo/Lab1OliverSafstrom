@@ -10,12 +10,7 @@ public class Main {
 
         createHourObj(hour);
         userInput(hour);
-
-        System.out.println(hour[0].getName());
-        System.out.println(hour[5].getName());
-
-        System.out.println(hour[0].getPrice());
-        System.out.println(hour[5].getPrice());
+        minMax(hour);
 
         //System.out.println(menu());
         // int[] userData = new int[]{2,43,5,6,7,4,54,76,67,34,4,65,65,87,4,4,32,432,45,45,12,324,43,};
@@ -122,33 +117,56 @@ public class Main {
 
     }
 
-   /* private static int[] userData() {
-        int[] prices = new int[22];
-        return prices;
-    }*/
-
-    private static int[] testUserData() {
-        int[] prices = new int[]{1, 2, 3, 4, 5, 6};
-        return prices;
-    }
-
-    public static void minMax(int[] userData) {
+    public static void minMax(Hour[] hours) {
 //        När alternativ 2 väljs på menyn så ska programmet skriva ut lägsta priset, högsta priset samt vilka
 //        timmar som detta infaller under dygnet. Dygnets medelpris ska också räknas fram och presenteras på
 //        skärmen.
 
-        // Flytta saker till egna methoder.
+        //Import hourObjects and find min,max and average prices and print them.
 
-        //Import userData and find min,max and average prices and print them.
+        int minPrice = Integer.MAX_VALUE;
+        int maxPrice = Integer.MIN_VALUE;
+        double totalPrice = 0;
 
-        int minPrice = Arrays.stream(userData).min().getAsInt();
-        int maxPrice = Arrays.stream(userData).max().getAsInt();
-        double averagePrice = Arrays.stream(userData).average().getAsDouble();
+        minPrice = getMinPrice(hours, minPrice);
+        maxPrice = getMaxPrice(hours, maxPrice);
+        totalPrice = getTotalPrice(hours, totalPrice);
+
+        double averagePrice = (double)totalPrice / 24.0;
 
         System.out.println("Lägsta priset är " + minPrice);
         System.out.println("Högsta priset är " + maxPrice);
         System.out.println("Medelpriset är " + (Math.round(averagePrice)));
 
+    }
+
+    private static double getTotalPrice(Hour[] hours, double totalPrice) {
+        for (int i = 0; i < hours.length; i++) {
+            totalPrice = hours[i].getPrice() + totalPrice;
+        }
+        return totalPrice;
+    }
+
+    private static int getMaxPrice(Hour[] hours, int maxPrice) {
+        for (int i = 0; i < hours.length; i++) {
+            for (int j = 0; j < hours.length; j++) {
+                if (hours[i].getPrice() > maxPrice) {
+                    maxPrice = hours[i].getPrice();
+                }
+            }
+        }
+        return maxPrice;
+    }
+
+    private static int getMinPrice(Hour[] hours, int minPrice) {
+        for (int i = 0; i < hours.length; i++) {
+            for (int j = 0; j < hours.length; j++) {
+                if (hours[i].getPrice() < minPrice) {
+                    minPrice = hours[i].getPrice();
+                }
+            }
+        }
+        return minPrice;
     }
 
     public static void sortering(int[] userData) {

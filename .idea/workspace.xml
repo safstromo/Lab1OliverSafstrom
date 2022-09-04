@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="add hour object">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="update userInput">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1662031697227</updated>
       <workItem from="1662031698413" duration="7494000" />
-      <workItem from="1662268680118" duration="20360000" />
+      <workItem from="1662268680118" duration="24404000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -92,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662300333025</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update userInput">
+      <created>1662300937456</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662300937456</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +122,7 @@
     <MESSAGE value="add minMax, add sorting" />
     <MESSAGE value="add minMax, add sorting update" />
     <MESSAGE value="add hour object" />
-    <option name="LAST_COMMIT_MESSAGE" value="add hour object" />
+    <MESSAGE value="update userInput" />
+    <option name="LAST_COMMIT_MESSAGE" value="update userInput" />
   </component>
 </project>
