@@ -2,8 +2,6 @@ package se.iths;
 
 
 import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Enumeration;
 import java.util.Scanner;
 
 public class Main {
@@ -11,10 +9,13 @@ public class Main {
         Hour[] hour = new Hour[24];
 
         createHourObj(hour);
-
+        userInput(hour);
 
         System.out.println(hour[0].getName());
         System.out.println(hour[5].getName());
+
+        System.out.println(hour[0].getPrice());
+        System.out.println(hour[5].getPrice());
 
         //System.out.println(menu());
         // int[] userData = new int[]{2,43,5,6,7,4,54,76,67,34,4,65,65,87,4,4,32,432,45,45,12,324,43,};
@@ -80,7 +81,7 @@ public class Main {
         return input;
     }
 
-    public static int[] userInput() {
+    public static void userInput(Hour[] hour) {
 //        Senaste året har elpriserna blivit högre och varierar mycket. Det här programmet ska kunna hjälpa till
 //        med att analysera elpriser för ett dygn. När man väljer alternativet inmatning från menyn ska
 //        programmet fråga efter priserna under dygnets timmar. Inmatningen av värden ska ske med hela
@@ -91,21 +92,19 @@ public class Main {
         // Måste lägga till felhandtering för out of bounds. samt flytta saker till metoder.
 //
 
-        // Creates a new array and asks user for data.
+        // Asks user for data. Adds data to each hour.
 
         Scanner sc = new Scanner(System.in);
-        int[] newUserData = new int[23];
-
 
         while (true) {
 
-            for (int i = 0; i < newUserData.length; i++) {
+            for (int i = 0; i < hour.length; i++) {
 
-                System.out.println("Ange priset för timme " + i + " (ange i hela ören.)");
-                newUserData[i] = sc.nextInt();
+                System.out.println("Ange priset per kW/h för varje timme " + i + " (ange i hela ören.)");
+                hour[i].setPrice(sc.nextInt());
             }
-            for (int i = 0; i < newUserData.length; i++) {
-                System.out.println("Du angav: " + newUserData[i] + " for timme " + i);
+            for (int i = 0; i < hour.length; i++) {
+                System.out.println("Du angav: " + hour[i].getPrice() + " för timme " + i);
             }
 
             System.out.println("Vill du ange priserna på nytt? (Y/N)");
@@ -120,7 +119,7 @@ public class Main {
                 break;
             }
         }
-        return newUserData;
+
     }
 
    /* private static int[] userData() {
