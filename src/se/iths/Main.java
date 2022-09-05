@@ -197,18 +197,25 @@ public class Main {
 //        sammanhängande under ett antal timmar. Låt programmet hitta de 4 billigaste timmarna som ligger i
 //        följd och skriva ut vid vilket klockslag man ska börja ladda för att få lägst totalpris samt vilket
 //        medelpris det blir under dessa 4 timmar.}
-        int bestPrice4h = Integer.MAX_VALUE;
-        int next4h = Integer.MAX_VALUE - 1;
 
-        for (int i = 0; i < hourObjects.length; i++) {
-            if (bestPrice4h > next4h)
-                bestPrice4h = next4h;
+        int bestPrice4hTotal = Integer.MAX_VALUE;
+        int next4hTotal = Integer.MAX_VALUE - 1;
+        double averagePrice4h = 0;
+        String name4hTotal = "";
 
-            for (int j = 0; j < 24; j++) {
-                    next4h = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
+            for (int i = 0; i < hourObjects.length; i++) {
+                if (bestPrice4hTotal > next4hTotal)
+                    bestPrice4hTotal = next4hTotal;
+
+                for (int j = 0; j < 24; j++) {
+                        next4hTotal = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
+                        name4hTotal = hourObjects[i].getName() + hourObjects[i + 3].getName();
+                }
+
+                averagePrice4h = next4hTotal / 4.0;
+                System.out.println("Bästa laddningstiden under 4 timmar är " + name4hTotal);
+                System.out.println("Medelpriset är då" + averagePrice4h + " öre kW/h");
             }
-            System.out.println(bestPrice4h);
-        }
     }
     public static void display() {
 //            Ett normalt konsol fönster har 80 teckens bredd och här vill vi utnyttja det för att visualisera priserna
