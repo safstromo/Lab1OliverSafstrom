@@ -173,26 +173,22 @@ public class Main {
 //        01-02 26 öre
 //        05-06 30 öre
 //        02-03 40 öre
+
+        // Sort array and print cheapest 4 objects
         Arrays.sort(hours, new Comparator<Hour>() {
             @Override
             public int compare(Hour o1, Hour o2) {
                 return Double.compare(o1.getPrice(), o2.getPrice());
             }
         });
-        int cheapest = hours[0].getPrice();
-        String cheapest1 = hours[0].getName();
-        System.out.println(cheapest1 + " " + cheapest + " öre");
+
+        System.out.println(hours[0].getName() + " -> " + hours[0].getPrice() + " öre");
+        System.out.println(hours[1].getName() + " -> " + hours[1].getPrice() + " öre");
+        System.out.println(hours[2].getName() + " -> " + hours[2].getPrice() + " öre");
+        System.out.println(hours[3].getName() + " -> " + hours[3].getPrice() + " öre");
 
 
     }
-//        for (int i = 0; i < userData.length ; i++) {
-//
-//            if (i <= i + 1) {
-//                System.out.println(userData[i] + i);
-//                i++;
-//            }
-//        }
-
 
     public static void ladda4h() {
 //        Om man har en elbil som man vill ladda så vill man kanske göra det när priset är som billigast på
