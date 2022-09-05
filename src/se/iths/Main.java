@@ -4,12 +4,13 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Hour[] hour = new Hour[24];
+        HourObject[] hourObject = new HourObject[24];
 
-        createHourObj(hour);
-        userInput(hour);
-        minMax(hour);
-        sortering(hour);
+        createHourObj(hourObject);
+        userInput(hourObject);
+        minMax(hourObject);
+        sortering(hourObject);
+        charge4h(hourObject);
         //System.out.println(menu());
         // int[] userData = new int[]{2,43,5,6,7,4,54,76,67,34,4,65,65,87,4,4,32,432,45,45,12,324,43,};
         //int[] userData = userInput();
@@ -18,13 +19,13 @@ public class Main {
         //  sortering(userData);
     }
 
-    public static void createHourObj(Hour[] hour) {
+    public static void createHourObj(HourObject[] hourObject) {
 
-        for (int i = 0; i < hour.length; i++) {
-            hour[i] = new Hour();
+        for (int i = 0; i < hourObject.length; i++) {
+            hourObject[i] = new HourObject();
         }
-        for (int i = 0; i < hour.length; i++) {
-            hour[i].setName("hour" + i);
+        for (int i = 0; i < hourObject.length; i++) {
+            hourObject[i].setName(i + "-" + (i + 1));
         }
     }
 
@@ -74,7 +75,7 @@ public class Main {
         return input;
     }
 
-    public static void userInput(Hour[] hour) {
+    public static void userInput(HourObject[] hourObject) {
 //        Senaste året har elpriserna blivit högre och varierar mycket. Det här programmet ska kunna hjälpa till
 //        med att analysera elpriser för ett dygn. När man väljer alternativet inmatning från menyn ska
 //        programmet fråga efter priserna under dygnets timmar. Inmatningen av värden ska ske med hela
@@ -91,16 +92,16 @@ public class Main {
 
         while (true) {
 
-            for (int i = 0; i < hour.length; i++) {
+            for (int i = 0; i < hourObject.length; i++) {
 
-                System.out.println("Ange priset per kW/h för varje timme " + i + " (ange i hela ören.)");
-                hour[i].setPrice(sc.nextInt());
+                System.out.println("Ange priset per kW/h för varje timme " + hourObject[i].getName() + " (ange i hela ören.)");
+                hourObject[i].setPrice(sc.nextInt());
             }
-            for (int i = 0; i < hour.length; i++) {
-                System.out.println("Du angav: " + hour[i].getPrice() + " för timme " + i);
+            for (int i = 0; i < hourObject.length; i++) {
+                System.out.println("Du angav: " + hourObject[i].getPrice() + " öre per kW/h för timme " + hourObject[i].getName());
             }
 
-            System.out.println("Vill du ange priserna på nytt? (Y/N)");
+            System.out.println("Stämmer detta?\nVill du ange priserna på nytt? (Y/N)");
             String pricesAgain = sc.next().toUpperCase();
 
             if (pricesAgain.equals("Y"))
@@ -115,7 +116,7 @@ public class Main {
 
     }
 
-    public static void minMax(Hour[] hours) {
+    public static void minMax(HourObject[] hourObjects) {
 //        När alternativ 2 väljs på menyn så ska programmet skriva ut lägsta priset, högsta priset samt vilka
 //        timmar som detta infaller under dygnet. Dygnets medelpris ska också räknas fram och presenteras på
 //        skärmen.
@@ -126,9 +127,9 @@ public class Main {
         int maxPrice = Integer.MIN_VALUE;
         double totalPrice = 0;
 
-        minPrice = getMinPrice(hours, minPrice);
-        maxPrice = getMaxPrice(hours, maxPrice);
-        totalPrice = getTotalPrice(hours, totalPrice);
+        minPrice = getMinPrice(hourObjects, minPrice);
+        maxPrice = getMaxPrice(hourObjects, maxPrice);
+        totalPrice = getTotalPrice(hourObjects, totalPrice);
 
         double averagePrice = (double) totalPrice / 24.0;
 
@@ -138,36 +139,7 @@ public class Main {
 
     }
 
-    private static double getTotalPrice(Hour[] hours, double totalPrice) {
-        for (int i = 0; i < hours.length; i++) {
-            totalPrice = hours[i].getPrice() + totalPrice;
-        }
-        return totalPrice;
-    }
-
-    private static int getMaxPrice(Hour[] hours, int maxPrice) {
-        for (int i = 0; i < hours.length; i++) {
-            for (int j = 0; j < hours.length; j++) {
-                if (hours[i].getPrice() > maxPrice) {
-                    maxPrice = hours[i].getPrice();
-                }
-            }
-        }
-        return maxPrice;
-    }
-
-    private static int getMinPrice(Hour[] hours, int minPrice) {
-        for (int i = 0; i < hours.length; i++) {
-            for (int j = 0; j < hours.length; j++) {
-                if (hours[i].getPrice() < minPrice) {
-                    minPrice = hours[i].getPrice();
-                }
-            }
-        }
-        return minPrice;
-    }
-
-    public static void sortering(Hour[] hours) {
+    public static void sortering(HourObject[] hourObjects) {
 //        Skriv ut timmarna och priset för dessa sorterade efter billigast till dyrast pris. Ex:
 //        00-01 23 öre
 //        01-02 26 öre
@@ -175,29 +147,69 @@ public class Main {
 //        02-03 40 öre
 
         // Sort array and print cheapest 4 objects
-        Arrays.sort(hours, new Comparator<Hour>() {
+        Arrays.sort(hourObjects, new Comparator<HourObject>() {
             @Override
-            public int compare(Hour o1, Hour o2) {
+            public int compare(HourObject o1, HourObject o2) {
                 return Double.compare(o1.getPrice(), o2.getPrice());
             }
         });
 
-        System.out.println(hours[0].getName() + " -> " + hours[0].getPrice() + " öre");
-        System.out.println(hours[1].getName() + " -> " + hours[1].getPrice() + " öre");
-        System.out.println(hours[2].getName() + " -> " + hours[2].getPrice() + " öre");
-        System.out.println(hours[3].getName() + " -> " + hours[3].getPrice() + " öre");
+        System.out.println(hourObjects[0].getName() + " -> " + hourObjects[0].getPrice() + " öre");
+        System.out.println(hourObjects[1].getName() + " -> " + hourObjects[1].getPrice() + " öre");
+        System.out.println(hourObjects[2].getName() + " -> " + hourObjects[2].getPrice() + " öre");
+        System.out.println(hourObjects[3].getName() + " -> " + hourObjects[3].getPrice() + " öre");
 
 
     }
 
-    public static void ladda4h() {
+    private static double getTotalPrice(HourObject[] hourObjects, double totalPrice) {
+        for (int i = 0; i < hourObjects.length; i++) {
+            totalPrice = hourObjects[i].getPrice() + totalPrice;
+        }
+        return totalPrice;
+    }
+
+    private static int getMaxPrice(HourObject[] hourObjects, int maxPrice) {
+        for (int i = 0; i < hourObjects.length; i++) {
+            for (int j = 0; j < hourObjects.length; j++) {
+                if (hourObjects[i].getPrice() > maxPrice) {
+                    maxPrice = hourObjects[i].getPrice();
+                }
+            }
+        }
+        return maxPrice;
+    }
+
+    private static int getMinPrice(HourObject[] hourObjects, int minPrice) {
+        for (int i = 0; i < hourObjects.length; i++) {
+            for (int j = 0; j < hourObjects.length; j++) {
+                if (hourObjects[i].getPrice() < minPrice) {
+                    minPrice = hourObjects[i].getPrice();
+                }
+            }
+        }
+        return minPrice;
+    }
+
+    public static void charge4h(HourObject[] hourObjects) {
 //        Om man har en elbil som man vill ladda så vill man kanske göra det när priset är som billigast på
 //        dygnet. Då batteriet behöver värmas/kylas så blir det minst förluster om man genomför laddningen
 //        sammanhängande under ett antal timmar. Låt programmet hitta de 4 billigaste timmarna som ligger i
 //        följd och skriva ut vid vilket klockslag man ska börja ladda för att få lägst totalpris samt vilket
 //        medelpris det blir under dessa 4 timmar.}
-    }
+        int bestPrice4h = Integer.MAX_VALUE;
+        int next4h = Integer.MAX_VALUE - 1;
 
+        for (int i = 0; i < hourObjects.length; i++) {
+            if (bestPrice4h > next4h)
+                bestPrice4h = next4h;
+
+            for (int j = 0; j < 24; j++) {
+                    next4h = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
+            }
+            System.out.println(bestPrice4h);
+        }
+    }
     public static void display() {
 //            Ett normalt konsol fönster har 80 teckens bredd och här vill vi utnyttja det för att visualisera priserna
 //            under dygnet. Lägg till ett 5:e alternativ för detta i din meny eller utöka alternativ 2 till att visa alla

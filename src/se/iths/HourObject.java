@@ -2,7 +2,7 @@ package se.iths;
 
 
 // Object per hour.
-public class Hour {
+public class HourObject {
 
     private String name;
     private int price;
