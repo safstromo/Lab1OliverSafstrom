@@ -12,16 +12,11 @@ public class Main {
         minMax(hourObject);
         sortering(hourObject);
         charge4h(hourObject);
-        //System.out.println(menu());
-        // int[] userData = new int[]{2,43,5,6,7,4,54,76,67,34,4,65,65,87,4,4,32,432,45,45,12,324,43,};
-        //int[] userData = userInput();
-        //userInput();
-        //minMax(userInput());
-        //  sortering(userData);
+
     }
 
     public static void createHourObj(HourObject[] hourObject) {
-
+// Creates one object for each hour.
         for (int i = 0; i < hourObject.length; i++) {
             hourObject[i] = new HourObject();
         }
@@ -32,7 +27,7 @@ public class Main {
 
     public static String menu() {
 
-        // Presents menu in console and returns choise.
+        // Presents menu in console and returns the choise;
 
         Scanner sc = new Scanner(System.in);
         String input = "";
@@ -77,15 +72,8 @@ public class Main {
     }
 
     public static void userInput(HourObject[] hourObject) {
-//        Senaste året har elpriserna blivit högre och varierar mycket. Det här programmet ska kunna hjälpa till
-//        med att analysera elpriser för ett dygn. När man väljer alternativet inmatning från menyn ska
-//        programmet fråga efter priserna under dygnets timmar. Inmatningen av värden ska ske med hela
-//        ören. Tex kan priser vara 50 102 eller 680 öre per kW/h. Priset sätts per intervall mella
-//        två hela
-//        timmar. Dygnets första pris är då mellan 00-01, andra intervallet är mellan 01-02 osv
 
-        // Måste lägga till felhandtering för out of bounds. samt flytta saker till metoder.
-//
+        // TODO !!! Måste lägga till felhantering för out of bounds. samt flytta saker till metoder.
 
         // Asks user for data. Adds data to each hour.
 
@@ -118,9 +106,6 @@ public class Main {
     }
 
     public static void minMax(HourObject[] hourObjects) {
-//        När alternativ 2 väljs på menyn så ska programmet skriva ut lägsta priset, högsta priset samt vilka
-//        timmar som detta infaller under dygnet. Dygnets medelpris ska också räknas fram och presenteras på
-//        skärmen.
 
         //Import hourObjects and find min,max and average prices and print them.
 
@@ -141,11 +126,6 @@ public class Main {
     }
 
     public static void sortering(HourObject[] hourObjects) {
-//        Skriv ut timmarna och priset för dessa sorterade efter billigast till dyrast pris. Ex:
-//        00-01 23 öre
-//        01-02 26 öre
-//        05-06 30 öre
-//        02-03 40 öre
 
         // Sort array and print cheapest 4 objects
         Arrays.sort(hourObjects, new Comparator<HourObject>() {
@@ -165,6 +145,8 @@ public class Main {
     }
 
     private static double getTotalPrice(HourObject[] hourObjects, double totalPrice) {
+        // Calculate total price
+
         for (int i = 0; i < hourObjects.length; i++) {
             totalPrice = hourObjects[i].getPrice() + totalPrice;
         }
@@ -172,6 +154,7 @@ public class Main {
     }
 
     private static int getMaxPrice(HourObject[] hourObjects, int maxPrice) {
+        // Calculate max price
         for (int i = 0; i < hourObjects.length; i++) {
             for (int j = 0; j < hourObjects.length; j++) {
                 if (hourObjects[i].getPrice() > maxPrice) {
@@ -183,6 +166,7 @@ public class Main {
     }
 
     private static int getMinPrice(HourObject[] hourObjects, int minPrice) {
+        // Calculate min price
         for (int i = 0; i < hourObjects.length; i++) {
             for (int j = 0; j < hourObjects.length; j++) {
                 if (hourObjects[i].getPrice() < minPrice) {

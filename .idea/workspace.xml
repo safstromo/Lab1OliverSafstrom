@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="update names">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="fix best4h">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/Main.java" afterDir="false" />
     </list>
@@ -57,7 +57,10 @@
       <updated>1662031697227</updated>
       <workItem from="1662031698413" duration="7494000" />
       <workItem from="1662268680118" duration="31191000" />
-      <workItem from="1662446254727" duration="1100000" />
+      <workItem from="1662446254727" duration="1259000" />
+      <workItem from="1662451528528" duration="75000" />
+      <workItem from="1662454823932" duration="166000" />
+      <workItem from="1662464607578" duration="614000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -136,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662358366421</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix best4h">
+      <created>1662447398533</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662447398533</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +172,7 @@
     <MESSAGE value="update Min/max" />
     <MESSAGE value="add sorting" />
     <MESSAGE value="update names" />
-    <option name="LAST_COMMIT_MESSAGE" value="update names" />
+    <MESSAGE value="fix best4h" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix best4h" />
   </component>
 </project>
