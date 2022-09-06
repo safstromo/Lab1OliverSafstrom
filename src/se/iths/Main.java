@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) {
         HourObject[] hourObject = new HourObject[24];
 
+        menu();
         createHourObj(hourObject);
         userInput(hourObject);
         minMax(hourObject);
@@ -154,6 +155,7 @@ public class Main {
             }
         });
 
+        //For-loop
         System.out.println(hourObjects[0].getName() + " -> " + hourObjects[0].getPrice() + " öre");
         System.out.println(hourObjects[1].getName() + " -> " + hourObjects[1].getPrice() + " öre");
         System.out.println(hourObjects[2].getName() + " -> " + hourObjects[2].getPrice() + " öre");
@@ -203,18 +205,18 @@ public class Main {
         double averagePrice4h = 0;
         String name4hTotal = "";
 
-            for (int i = 0; i < hourObjects.length; i++) {
+            for (int i = 0; i < hourObjects.length -3; i++) {
                 if (bestPrice4hTotal > next4hTotal)
                     bestPrice4hTotal = next4hTotal;
 
-                for (int j = 0; j < 24; j++) {
+                for (int j = 0; j < 20; j++) {
                         next4hTotal = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
                         name4hTotal = hourObjects[i].getName() + hourObjects[i + 3].getName();
                 }
 
                 averagePrice4h = next4hTotal / 4.0;
                 System.out.println("Bästa laddningstiden under 4 timmar är " + name4hTotal);
-                System.out.println("Medelpriset är då" + averagePrice4h + " öre kW/h");
+                System.out.println("Medelpriset är då " + averagePrice4h + " öre kW/h");
             }
     }
     public static void display() {
