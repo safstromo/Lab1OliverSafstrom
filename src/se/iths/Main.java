@@ -109,13 +109,9 @@ public class Main {
 
         //Import hourObjects and find min,max and average prices and print them.
 
-        int minPrice = Integer.MAX_VALUE;
-        int maxPrice = Integer.MIN_VALUE;
-        double totalPrice = 0;
-
-        minPrice = getMinPrice(hourObjects, minPrice);
-        maxPrice = getMaxPrice(hourObjects, maxPrice);
-        totalPrice = getTotalPrice(hourObjects, totalPrice);
+        int minPrice = getMinPrice(hourObjects);
+        int maxPrice = getMaxPrice(hourObjects);
+        double totalPrice = getTotalPrice(hourObjects);
 
         double averagePrice = (double) totalPrice / 24.0;
 

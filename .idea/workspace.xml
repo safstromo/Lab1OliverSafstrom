@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="Update documentation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="Cleanup getMax,getMin,getTotal">
       <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +62,7 @@
       <workItem from="1662454823932" duration="166000" />
       <workItem from="1662464607578" duration="1691000" />
       <workItem from="1662546328743" duration="719000" />
-      <workItem from="1662550693109" duration="6908000" />
+      <workItem from="1662550693109" duration="7234000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -156,7 +155,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662465235841</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fix charge4h">
+      <created>1662559942193</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1662559942193</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Cleanup getMax,getMin,getTotal">
+      <created>1662560128766</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1662560128766</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +197,9 @@
     <MESSAGE value="update names" />
     <MESSAGE value="fix best4h" />
     <MESSAGE value="Update documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update documentation" />
+    <MESSAGE value="Fix charge4h" />
+    <MESSAGE value="Cleanup getMax,getMin,getTotal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup getMax,getMin,getTotal" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
