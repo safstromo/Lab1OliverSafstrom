@@ -145,17 +145,18 @@ public class Main {
 
     }
 
-    private static double getTotalPrice(HourObject[] hourObjects, double totalPrice) {
+    private static double getTotalPrice(HourObject[] hourObjects) {
         // Calculate total price
-
+        double totalPrice = 0;
         for (int i = 0; i < hourObjects.length; i++) {
             totalPrice = hourObjects[i].getPrice() + totalPrice;
         }
         return totalPrice;
     }
 
-    private static int getMaxPrice(HourObject[] hourObjects, int maxPrice) {
+    private static int getMaxPrice(HourObject[] hourObjects) {
         // Calculate max price
+        int maxPrice = 0;
         for (int i = 0; i < hourObjects.length; i++) {
             for (int j = 0; j < hourObjects.length; j++) {
                 if (hourObjects[i].getPrice() > maxPrice) {
@@ -166,8 +167,9 @@ public class Main {
         return maxPrice;
     }
 
-    private static int getMinPrice(HourObject[] hourObjects, int minPrice) {
+    private static int getMinPrice(HourObject[] hourObjects) {
         // Calculate min price
+        int minPrice = 0;
         for (int i = 0; i < hourObjects.length; i++) {
             for (int j = 0; j < hourObjects.length; j++) {
                 if (hourObjects[i].getPrice() < minPrice) {
