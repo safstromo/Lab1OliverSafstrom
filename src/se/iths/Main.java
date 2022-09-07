@@ -6,13 +6,13 @@ public class Main {
     public static void main(String[] args) {
         HourObject[] hourObject = new HourObject[24];
 
-        menu();
         createHourObj(hourObject);
+//        menu();
         userInput(hourObject);
-        minMax(hourObject);
-        sortering(hourObject);
+//        minMax(hourObject);
+//        sortering(hourObject);
         charge4h(hourObject);
-
+        // display(hourObject);
     }
 
     public static void createHourObj(HourObject[] hourObject) {
@@ -125,6 +125,7 @@ public class Main {
 
     }
 
+
     public static void sortering(HourObject[] hourObjects) {
 
         // Sort array and print cheapest 4 objects
@@ -178,32 +179,36 @@ public class Main {
     }
 
     public static void charge4h(HourObject[] hourObjects) {
-//        Om man har en elbil som man vill ladda så vill man kanske göra det när priset är som billigast på
-//        dygnet. Då batteriet behöver värmas/kylas så blir det minst förluster om man genomför laddningen
-//        sammanhängande under ett antal timmar. Låt programmet hitta de 4 billigaste timmarna som ligger i
-//        följd och skriva ut vid vilket klockslag man ska börja ladda för att få lägst totalpris samt vilket
-//        medelpris det blir under dessa 4 timmar.}
 
+        // Calculate best 4 hour in a row to charge
+
+        int next4hPrice;
+        double averagePriceBest4h = 0;
         int bestPrice4hTotal = Integer.MAX_VALUE;
-        int next4hTotal = Integer.MAX_VALUE - 1;
-        double averagePrice4h = 0;
-        String name4hTotal = "";
+        String nameBestPrice4h = "";
 
-            for (int i = 0; i < hourObjects.length -3; i++) {
-                if (bestPrice4hTotal > next4hTotal)
-                    bestPrice4hTotal = next4hTotal;
 
-                for (int j = 0; j < 20; j++) {
-                        next4hTotal = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
-                        name4hTotal = hourObjects[i].getName() + hourObjects[i + 3].getName();
-                }
-
-                averagePrice4h = next4hTotal / 4.0;
-                System.out.println("Bästa laddningstiden under 4 timmar är " + name4hTotal);
-                System.out.println("Medelpriset är då " + averagePrice4h + " öre kW/h");
+        for (int i = 0; i < hourObjects.length; i++) {  // Find best 4 hours
+            if (i == hourObjects.length - 3) {
+                break;
             }
+            next4hPrice = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
+            if (next4hPrice < bestPrice4hTotal) {
+                bestPrice4hTotal = next4hPrice;
+                nameBestPrice4h = hourObjects[i].getName() + "-" + hourObjects[i + 2].getName();
+            }
+        }
+        averagePriceBest4h = bestPrice4hTotal / 4.0;
+
+        printBest4h(averagePriceBest4h, nameBestPrice4h);
     }
-    public static void display() {
+
+    private static void printBest4h(double averagePriceBest4h, String nameBestPrice4h) {
+        System.out.println("Bästa laddningstiden under 4 timmar är " + nameBestPrice4h);
+        System.out.println("Medelpriset är då " + averagePriceBest4h + " öre kW/h");
+    }
+
+    public static void display(HourObject[] hourObjects) {
 //            Ett normalt konsol fönster har 80 teckens bredd och här vill vi utnyttja det för att visualisera priserna
 //            under dygnet. Lägg till ett 5:e alternativ för detta i din meny eller utöka alternativ 2 till att visa alla
 //            priser utöver min, max och medel. Exempel på hur visualiseringen kan se ut med 75 teckens bredd.
@@ -224,6 +229,22 @@ public class Main {
 //            x
 //                    |-----------------------------------------------------------------------
 //                    |00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+
+//int maxPrice = Integer.MAX_VALUE;
+//        for (int row = 0; row < getMaxPrice(hourObjects,maxPrice)/ 10; row++) {
+//            System.out.println();
+//            for (int collumn = 0; collumn < 75; collumn++) {
+//                if (collumn == 0 && row < getMaxPrice(hourObjects,maxPrice) / 10){
+//                    System.out.println("|");
+//                } else if (row == getMaxPrice(hourObjects,maxPrice)/ 10) {
+//                    System.out.print("-");
+//                }else {
+//                    System.out.print("");
+//            }
+
+//            }
+
+//        }
 
     }
 }
