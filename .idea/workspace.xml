@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="Cleanup getMax,getMin,getTotal">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="Cleanup minMax">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +63,7 @@
       <workItem from="1662454823932" duration="166000" />
       <workItem from="1662464607578" duration="1691000" />
       <workItem from="1662546328743" duration="719000" />
-      <workItem from="1662550693109" duration="7234000" />
+      <workItem from="1662550693109" duration="17044000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -169,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662560128766</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Cleanup minMax">
+      <created>1662560221718</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1662560221718</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +207,8 @@
     <MESSAGE value="Update documentation" />
     <MESSAGE value="Fix charge4h" />
     <MESSAGE value="Cleanup getMax,getMin,getTotal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup getMax,getMin,getTotal" />
+    <MESSAGE value="Cleanup minMax" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup minMax" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

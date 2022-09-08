@@ -5,14 +5,20 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         HourObject[] hourObject = new HourObject[24];
-
         createHourObj(hourObject);
-//        menu();
-        userInput(hourObject);
-//        minMax(hourObject);
-//        sortering(hourObject);
-        charge4h(hourObject);
-        // display(hourObject);
+        boolean cont = true;
+        while (cont) {
+
+
+            switch (menu()) {
+                case "1" -> userInput(hourObject);
+                case "2" -> printMinMax(hourObject);
+                case "3" -> sortering(hourObject);
+                case "4" -> charge4h(hourObject);
+                case "5" -> display(hourObject);
+                case "e" -> cont = false;
+            }
+        }
     }
 
     public static void createHourObj(HourObject[] hourObject) {
@@ -37,12 +43,7 @@ public class Main {
         // Loop until valid input.
         while (!validInput) {
 
-            System.out.println("Elpriser\n========");
-            System.out.println("1. Inmatning");
-            System.out.println("2. Min, Max och Medel");
-            System.out.println("3. Sortera");
-            System.out.println("4. Bästa Laddningstid (4h)");
-            System.out.println("e. Avsluta");
+            printMenu();
 
             input = sc.nextLine();
             switch (input) {
@@ -62,6 +63,10 @@ public class Main {
                     input = "4";
                     validInput = true;
                 }
+                case "5" -> {
+                    input = "5";
+                    validInput = true;
+                }
                 case "e" -> {
                     input = "e";
                     validInput = true;
@@ -69,6 +74,16 @@ public class Main {
             }
         }
         return input;
+    }
+
+    private static void printMenu() {
+        System.out.println("Elpriser\n========");
+        System.out.println("1. Inmatning");
+        System.out.println("2. Min, Max och Medel");
+        System.out.println("3. Sortera");
+        System.out.println("4. Bästa Laddningstid (4h)");
+        System.out.println("5. Visa stapeldiagram.");
+        System.out.println("e. Avsluta");
     }
 
     public static void userInput(HourObject[] hourObject) {
@@ -105,7 +120,7 @@ public class Main {
 
     }
 
-    public static void minMax(HourObject[] hourObjects) {
+    public static void printMinMax(HourObject[] hourObjects) {
 
         //Import hourObjects and find min,max and average prices and print them.
 
@@ -125,6 +140,7 @@ public class Main {
     public static void sortering(HourObject[] hourObjects) {
 
         // Sort array and print cheapest 4 objects
+
         Arrays.sort(hourObjects, new Comparator<HourObject>() {
             @Override
             public int compare(HourObject o1, HourObject o2) {
@@ -152,7 +168,7 @@ public class Main {
 
     private static int getMaxPrice(HourObject[] hourObjects) {
         // Calculate max price
-        int maxPrice = 0;
+        int maxPrice = hourObjects[0].getPrice();
         for (int i = 0; i < hourObjects.length; i++) {
             for (int j = 0; j < hourObjects.length; j++) {
                 if (hourObjects[i].getPrice() > maxPrice) {
@@ -165,7 +181,7 @@ public class Main {
 
     private static int getMinPrice(HourObject[] hourObjects) {
         // Calculate min price
-        int minPrice = 0;
+        int minPrice = hourObjects[0].getPrice();
         for (int i = 0; i < hourObjects.length; i++) {
             for (int j = 0; j < hourObjects.length; j++) {
                 if (hourObjects[i].getPrice() < minPrice) {
@@ -207,42 +223,27 @@ public class Main {
     }
 
     public static void display(HourObject[] hourObjects) {
-//            Ett normalt konsol fönster har 80 teckens bredd och här vill vi utnyttja det för att visualisera priserna
-//            under dygnet. Lägg till ett 5:e alternativ för detta i din meny eller utöka alternativ 2 till att visa alla
-//            priser utöver min, max och medel. Exempel på hur visualiseringen kan se ut med 75 teckens bredd.
-//            Beroende på vilket prisintervall som gäller kan skalan behöva justeras dynamiskt.
-//            530|
-//                    x
-//                    |
-//                    x
-//            x
-//                    xx
-//            xx
-//                    xxxxxxxxxxxxxx
-//            xxxx
-//                    |xx|xxxxxxxxxxxxxxxxxxxxxxxxx
-//            xxxxxxxxxxxxxx
-//                    | xxxxxxxxx
-//            40| xxxxxxxxx
-//            x
-//                    |-----------------------------------------------------------------------
-//                    |00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23
 
-//int maxPrice = Integer.MAX_VALUE;
-//        for (int row = 0; row < getMaxPrice(hourObjects,maxPrice)/ 10; row++) {
-//            System.out.println();
-//            for (int collumn = 0; collumn < 75; collumn++) {
-//                if (collumn == 0 && row < getMaxPrice(hourObjects,maxPrice) / 10){
-//                    System.out.println("|");
-//                } else if (row == getMaxPrice(hourObjects,maxPrice)/ 10) {
-//                    System.out.print("-");
-//                }else {
-//                    System.out.print("");
-//            }
 
-//            }
+        for (int row = 0; row <= 24; row++) {
+            System.out.println();
 
-//        }
+            for (int collumn = 0; collumn < 75; collumn++) {
+                if (collumn == 0 && row < 24) {
+                    System.out.print(row);
+                } else if (row == 24) {
+                    System.out.print("-");
+                } else if (collumn == 1) {
+                    System.out.print("|");
+
+                } else {
+                    System.out.print("");
+                }
+
+            }
+
+        }
+        System.out.println();
 
     }
 }
