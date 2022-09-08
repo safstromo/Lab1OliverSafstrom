@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
         HourObject[] hourObject = new HourObject[24];
         createHourObj(hourObject);
-        boolean cont = true;
-        while (cont) {
+        boolean continueLoop = true;
+        while (continueLoop) {
 
 
             switch (menu()) {
@@ -16,7 +16,7 @@ public class Main {
                 case "3" -> sortering(hourObject);
                 case "4" -> charge4h(hourObject);
                 case "5" -> display(hourObject);
-                case "e" -> cont = false;
+                case "e" -> continueLoop = false;
             }
         }
     }
@@ -77,7 +77,7 @@ public class Main {
     }
 
     private static void printMenu() {
-        System.out.println("Elpriser\n========");
+        System.out.println("========\nElpriser\n========");
         System.out.println("1. Inmatning");
         System.out.println("2. Min, Max och Medel");
         System.out.println("3. Sortera");
@@ -227,7 +227,7 @@ public class Main {
             next4hPrice = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
             if (next4hPrice < bestPrice4hTotal) {
                 bestPrice4hTotal = next4hPrice;
-                nameBestPrice4h = hourObjects[i].getName() + "-" + hourObjects[i + 2].getName();
+                nameBestPrice4h = hourObjects[i].getName() + " - " + hourObjects[i + 1].getName() + " - " + hourObjects[i + 2].getName() + " - " + hourObjects[i + 3].getName();
             }
         }
         averagePriceBest4h = bestPrice4hTotal / 4.0;
