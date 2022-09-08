@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) {
         HourObject[] hourObject = new HourObject[24];
         createHourObj(hourObject);
+
         boolean continueLoop = true;
         while (continueLoop) {
 
@@ -13,7 +14,7 @@ public class Main {
             switch (menu()) {
                 case "1" -> userInput(hourObject);
                 case "2" -> printMinMax(hourObject);
-                case "3" -> sortering(hourObject);
+                case "3" -> sortHourCheapestFirst(hourObject);
                 case "4" -> charge4h(hourObject);
                 case "5" -> display(hourObject);
                 case "e" -> continueLoop = false;
@@ -99,28 +100,40 @@ public class Main {
 
             getUserinput(hourObject, sc);
             showInput(hourObject);
-
             continueLoop = checkInputCorrect(sc);
         }
 
     }
 
     private static boolean checkInputCorrect(Scanner sc) {
-        boolean contLoop;
-        System.out.println("Stämmer detta?\nVill du ange priserna på nytt? (Y/N)");
-        String pricesAgain = sc.next().toUpperCase();
+        boolean contLoop = false;
+        boolean validInput = false;
 
-        if (pricesAgain.equals("Y"))
-            contLoop = true;
-        else if (pricesAgain.equals("N"))
-            contLoop = false;
-        else {
-            System.out.println("===========================================");
-            System.out.println("Fel input (Y/N) du åker tillbaka till menyn");
-            System.out.println("===========================================");
-            System.out.println();
-            contLoop = false;
+        do {
+            System.out.println("Vill du ange priserna på nytt? (Y/N)");
+            String pricesAgain = sc.next().toUpperCase();
+            switch (pricesAgain) {
+                case "Y" -> {
+                    contLoop = true;
+                    validInput = true;
+                }
+                case "N" -> {
+
+                    validInput = true;
+                }
+
+                default -> {
+
+                    System.out.println("===========================================");
+                    System.out.println("Fel input försök igen!");
+                    System.out.println("===========================================");
+                    System.out.println();
+
+                }
+            }
         }
+        while (!validInput);
+
         return contLoop;
     }
 
@@ -140,6 +153,7 @@ public class Main {
         for (int i = 0; i < hourObject.length; i++) {
             System.out.println("Du angav: " + hourObject[i].getPrice() + " öre per kW/h för timme " + hourObject[i].getName());
         }
+        System.out.println("Stämmer detta?");
     }
 
     public static void printMinMax(HourObject[] hourObjects) {
@@ -158,10 +172,9 @@ public class Main {
 
     }
 
+    public static void sortHourCheapestFirst(HourObject[] hourObjects) {
 
-    public static void sortering(HourObject[] hourObjects) {
-
-        // Sort array and print cheapest 4 objects
+        // Sort array and print cheapest objects
 
         Arrays.sort(hourObjects, new Comparator<HourObject>() {
             @Override
@@ -176,7 +189,7 @@ public class Main {
 
     private static void printSorted(HourObject[] hourObjects) {
         for (int i = 0; i < hourObjects.length; i++) {
-            if (i == hourObjects.length -1)
+            if (i == hourObjects.length - 1)
                 break;
             System.out.println(hourObjects[i].getName() + "-" + hourObjects[i + 1].getName() + " -> " + hourObjects[i].getPrice() + " öre");
         }
@@ -219,15 +232,13 @@ public class Main {
 
     public static void charge4h(HourObject[] hourObjects) {
 
-        // Calculate best 4 hour in a row to charge
+        // Sort objects by name then calculate best 4 hour in a row to charge
         Arrays.sort(hourObjects, new Comparator<HourObject>() {
             @Override
             public int compare(HourObject o1, HourObject o2) {
                 return CharSequence.compare(o1.getName(), o2.getName());
             }
         });
-
-
 
 
         int next4hPrice;
@@ -267,7 +278,6 @@ public class Main {
                     System.out.print(row);
                 } else if (row == 0) {
                     for (int i = hourObjects[0].getPrice(); i > 0; i--) {
-//                        String julia = Integer.toString(hourObjects[0].getPrice());
                         System.out.print("x");
 
                     }
