@@ -87,37 +87,52 @@ public class Main {
     }
 
     public static void userInput(HourObject[] hourObject) {
-
-        // TODO !!! Måste lägga till felhantering för out of bounds. samt flytta saker till metoder.
-
         // Asks user for data. Adds data to each hour.
 
         Scanner sc = new Scanner(System.in);
+        boolean continueLoop = true;
+        while (continueLoop) {
 
-        while (true) {
+            getUserinput(hourObject, sc);
+            showInput(hourObject);
 
-            for (int i = 0; i < hourObject.length; i++) {
+            continueLoop = checkInputCorrect(sc);
+        }
 
-                System.out.println("Ange priset per kW/h för varje timme " + hourObject[i].getName() + " (ange i hela ören.)");
+    }
+
+    private static boolean checkInputCorrect(Scanner sc) {
+        boolean contLoop;
+        System.out.println("Stämmer detta?\nVill du ange priserna på nytt? (Y/N)");
+        String pricesAgain = sc.next().toUpperCase();
+
+        if (pricesAgain.equals("Y"))
+            contLoop = true;
+        else if (pricesAgain.equals("N"))
+            contLoop = false;
+        else {
+            System.out.println("Fel input (Y/N) du åker tillbaka till menyn");
+            contLoop = false;
+        }
+        return contLoop;
+    }
+
+    private static void getUserinput(HourObject[] hourObject, Scanner sc) {
+        for (int i = 0; i < hourObject.length; i++) {
+
+            System.out.println("Ange priset per kW/h för varje timme " + hourObject[i].getName() + " (ange i hela ören.)");
+            try {
                 hourObject[i].setPrice(sc.nextInt());
-            }
-            for (int i = 0; i < hourObject.length; i++) {
-                System.out.println("Du angav: " + hourObject[i].getPrice() + " öre per kW/h för timme " + hourObject[i].getName());
-            }
-
-            System.out.println("Stämmer detta?\nVill du ange priserna på nytt? (Y/N)");
-            String pricesAgain = sc.next().toUpperCase();
-
-            if (pricesAgain.equals("Y"))
-                continue;
-            else if (pricesAgain.equals("N"))
-                break;
-            else {
-                System.out.println("Fel input (Y/N) du åker tillbaka till menyn");
+            } catch (Exception e) {
                 break;
             }
         }
+    }
 
+    private static void showInput(HourObject[] hourObject) {
+        for (int i = 0; i < hourObject.length; i++) {
+            System.out.println("Du angav: " + hourObject[i].getPrice() + " öre per kW/h för timme " + hourObject[i].getName());
+        }
     }
 
     public static void printMinMax(HourObject[] hourObjects) {
@@ -231,11 +246,16 @@ public class Main {
             for (int collumn = 0; collumn < 75; collumn++) {
                 if (collumn == 0 && row < 24) {
                     System.out.print(row);
+                } else if (row == 0) {
+                    for (int i = hourObjects[0].getPrice(); i > 0; i--) {
+//                        String julia = Integer.toString(hourObjects[0].getPrice());
+                        System.out.print("x");
+
+                    }
                 } else if (row == 24) {
                     System.out.print("-");
                 } else if (collumn == 1) {
                     System.out.print("|");
-
                 } else {
                     System.out.print("");
                 }
