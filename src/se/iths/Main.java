@@ -27,7 +27,11 @@ public class Main {
             hourObject[i] = new HourObject();
         }
         for (int i = 0; i < hourObject.length; i++) {
-            hourObject[i].setName(i + "-" + (i + 1));
+            if (i <= 9) {
+                hourObject[i].setName("0" + Integer.toString(i));
+            } else {
+                hourObject[i].setName(Integer.toString(i));
+            }
         }
     }
 
@@ -166,13 +170,16 @@ public class Main {
             }
         });
 
-        //For-loop
-        System.out.println(hourObjects[0].getName() + " -> " + hourObjects[0].getPrice() + " öre");
-        System.out.println(hourObjects[1].getName() + " -> " + hourObjects[1].getPrice() + " öre");
-        System.out.println(hourObjects[2].getName() + " -> " + hourObjects[2].getPrice() + " öre");
-        System.out.println(hourObjects[3].getName() + " -> " + hourObjects[3].getPrice() + " öre");
+        printSorted(hourObjects);
 
+    }
 
+    private static void printSorted(HourObject[] hourObjects) {
+        for (int i = 0; i < hourObjects.length; i++) {
+            if (i == hourObjects.length -1)
+                break;
+            System.out.println(hourObjects[i].getName() + "-" + hourObjects[i + 1].getName() + " -> " + hourObjects[i].getPrice() + " öre");
+        }
     }
 
     private static double getTotalPrice(HourObject[] hourObjects) {
@@ -213,6 +220,15 @@ public class Main {
     public static void charge4h(HourObject[] hourObjects) {
 
         // Calculate best 4 hour in a row to charge
+        Arrays.sort(hourObjects, new Comparator<HourObject>() {
+            @Override
+            public int compare(HourObject o1, HourObject o2) {
+                return CharSequence.compare(o1.getName(), o2.getName());
+            }
+        });
+
+
+
 
         int next4hPrice;
         double averagePriceBest4h = 0;
@@ -227,7 +243,7 @@ public class Main {
             next4hPrice = hourObjects[i].getPrice() + hourObjects[i + 1].getPrice() + hourObjects[i + 2].getPrice() + hourObjects[i + 3].getPrice();
             if (next4hPrice < bestPrice4hTotal) {
                 bestPrice4hTotal = next4hPrice;
-                nameBestPrice4h = hourObjects[i].getName() + " - " + hourObjects[i + 1].getName() + " - " + hourObjects[i + 2].getName() + " - " + hourObjects[i + 3].getName();
+                nameBestPrice4h = hourObjects[i].getName() + " - " + hourObjects[i + 4].getName();
             }
         }
         averagePriceBest4h = bestPrice4hTotal / 4.0;
