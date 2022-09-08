@@ -111,7 +111,10 @@ public class Main {
         else if (pricesAgain.equals("N"))
             contLoop = false;
         else {
+            System.out.println("===========================================");
             System.out.println("Fel input (Y/N) du åker tillbaka till menyn");
+            System.out.println("===========================================");
+            System.out.println();
             contLoop = false;
         }
         return contLoop;
