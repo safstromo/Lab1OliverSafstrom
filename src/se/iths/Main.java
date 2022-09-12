@@ -72,7 +72,7 @@ public class Main {
                     input = "5";
                     validInput = true;
                 }
-                case "e" -> {
+                case "e", "E" -> {
                     input = "e";
                     validInput = true;
                 }
@@ -82,7 +82,7 @@ public class Main {
     }
 
     private static void printMenu() {
-        System.out.println("========\nElpriser\n========");
+        System.out.println("\n========\nElpriser\n========");
         System.out.println("1. Inmatning");
         System.out.println("2. Min, Max och Medel");
         System.out.println("3. Sortera");
@@ -270,29 +270,63 @@ public class Main {
     public static void display(HourObject[] hourObjects) {
 
 
-        for (int row = 0; row <= 24; row++) {
-            System.out.println();
+        int graphHeight = getMaxPrice(hourObjects);
+        int time = 26;
+        String[][] graph = new String[graphHeight][time];
 
-            for (int collumn = 0; collumn < 75; collumn++) {
-                if (collumn == 0 && row < 24) {
-                    System.out.print(row);
-                } else if (row == 0) {
-                    for (int i = hourObjects[0].getPrice(); i > 0; i--) {
-                        System.out.print("x");
+        for (int rows = 0; rows < graph.length; rows++) {
+            Arrays.fill(graph[rows], " ");
+        }
 
+
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 0; column < graph[row].length; column++) {
+
+                if (row == graphHeight - 2) {
+                    graph[row][column] = "---";
+                } else if (column == 1) {
+                    if (row == 1) {
+                        graph[row][column] = Integer.toString(getMaxPrice(hourObjects));
+                    } else if (row == graph.length - 3) {
+                        graph[row][column] = Integer.toString(getMinPrice(hourObjects)) + "  ";
+                    } else {
+                        graph[row][column] = "   ";
                     }
-                } else if (row == 24) {
-                    System.out.print("-");
-                } else if (collumn == 1) {
-                    System.out.print("|");
+                } else if (column == 2 && row < graph.length -2) {
+                    graph[row][column] = " |";
+                } else if (row == graphHeight - 1 && column < 24) {
+                    graph[row][column] = " " + hourObjects[column].getName();
+//                } else if (Integer.toString(column).equals(hourObjects[column].getName()) || hourObjects[column].getPrice() == getMaxPrice(hourObjects)) {
+//                    graph[row][column] = " ##";
                 } else {
-                    System.out.print("");
+                    graph[row][column] = " ";
                 }
-
             }
 
+
         }
-        System.out.println();
+        printGraph(graph);
+
 
     }
+
+
+    private static void printGraph(String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            System.out.println();
+            for (int collumn = 0; collumn < graph[row].length; collumn++) {
+                System.out.print(graph[row][collumn]);
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
