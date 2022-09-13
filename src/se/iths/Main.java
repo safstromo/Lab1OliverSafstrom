@@ -175,7 +175,6 @@ public class Main {
     public static void sortHourCheapestFirst(HourObject[] hourObjects) {
 
         // Sort array and print cheapest objects
-
         Arrays.sort(hourObjects, new Comparator<HourObject>() {
             @Override
             public int compare(HourObject o1, HourObject o2) {
@@ -233,12 +232,7 @@ public class Main {
     public static void charge4h(HourObject[] hourObjects) {
 
         // Sort objects by name then calculate best 4 hour in a row to charge
-        Arrays.sort(hourObjects, new Comparator<HourObject>() {
-            @Override
-            public int compare(HourObject o1, HourObject o2) {
-                return CharSequence.compare(o1.getName(), o2.getName());
-            }
-        });
+        sortByName(hourObjects);
 
 
         int next4hPrice;
@@ -262,6 +256,15 @@ public class Main {
         printBest4h(averagePriceBest4h, nameBestPrice4h);
     }
 
+    private static void sortByName(HourObject[] hourObjects) {
+        Arrays.sort(hourObjects, new Comparator<HourObject>() {
+            @Override
+            public int compare(HourObject o1, HourObject o2) {
+                return CharSequence.compare(o1.getName(), o2.getName());
+            }
+        });
+    }
+
     private static void printBest4h(double averagePriceBest4h, String nameBestPrice4h) {
         System.out.println("Bästa laddningstiden under 4 timmar är " + nameBestPrice4h);
         System.out.println("Medelpriset är då " + averagePriceBest4h + " öre kW/h");
@@ -269,58 +272,121 @@ public class Main {
 
     public static void display(HourObject[] hourObjects) {
 
-
-        int graphHeight = getMaxPrice(hourObjects) / 20;
+        int graphHeight = 20;
         int graphWidth = 29;
         String[][] graph = new String[graphHeight][graphWidth];
 
 
+        sortByName(hourObjects);
         fillGraphArray(graph);
+
+
+        addTop20(hourObjects, graph);
+        addTop40(hourObjects, graph);
+        addTop60(hourObjects, graph);
+        addTop80(hourObjects, graph);
+        addIfNot0(hourObjects, graph);
+
+        addMaxPriceHour(hourObjects, graph);
         addXYToGraph(graphHeight, graph);
         addMinMaxToGraph(hourObjects, graph);
         addHourToGraph(hourObjects, graphHeight, graph);
-        addMaxPriceHour(hourObjects, graph);
-//        for (int row = 0; row < graph.length; row++) {
-//            for (int column = 4; column < graph[row].length; column++) {
-//                if (column < 28 && row < graph.length - 3)
-//                    if ((hourObjects[column - 4].getPrice() / 10) < 100)
-//                        graph[row][column] = " ##";
-//                    else if ((hourObjects[column - 4].getPrice() / 10) > 75)
-//                        graph[row][column] = " ##";
-//                    else if ((hourObjects[column - 4].getPrice() / 10) > 50)
-//                        graph[row][column] = " ##";
-//                    else if ((hourObjects[column - 4].getPrice() / 10) > 25)
-//                        graph[row][column] = " ##";
-//                    else if ((hourObjects[column - 4].getPrice() / 10) > 10)
-//                        graph[row][column] = " ##";
-//                    else graph[row][column] = "  ";
-//            }
-//        }
-
 
         printGraph(graph);
 
 
     }
 
+    private static void addIfNot0(HourObject[] hourObjects, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 4; column < graph[row].length; column++) {
+                if (column < 28 && row > 15 && hourObjects[column - 4].getPrice() < getMaxPrice(hourObjects)) {
+                    if ((hourObjects[column - 4].getPrice()) > 1) {
+                        graph[row][column] = " # ";
+                    } else graph[row][column] = "    ";
+                }
+
+
+            }
+        }
+    }
+
+    private static void addTop80(HourObject[] hourObjects, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 4; column < graph[row].length; column++) {
+                if (column < 28 && row > 12 && hourObjects[column - 4].getPrice() < getMaxPrice(hourObjects)) {
+                    if ((hourObjects[column - 4].getPrice()) > 20) {
+                        graph[row][column] = " # ";
+                    } else graph[row][column] = "    ";
+                }
+
+
+            }
+        }
+    }
+
+    private static void addTop60(HourObject[] hourObjects, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 4; column < graph[row].length; column++) {
+                if (column < 28 && row > 9 && hourObjects[column - 4].getPrice() < getMaxPrice(hourObjects)) {
+                    if ((hourObjects[column - 4].getPrice()) > 50) {
+                        graph[row][column] = " # ";
+                    } else graph[row][column] = "    ";
+                }
+
+
+            }
+        }
+    }
+
+    private static void addTop40(HourObject[] hourObjects, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 4; column < graph[row].length; column++) {
+                if (column < 28 && row > 6 && hourObjects[column - 4].getPrice() < getMaxPrice(hourObjects)) {
+                    if ((hourObjects[column - 4].getPrice()) > 80) {
+                        graph[row][column] = " # ";
+                    } else graph[row][column] = "    ";
+                }
+
+
+            }
+        }
+    }
+
+    private static void addTop20(HourObject[] hourObjects, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 4; column < graph[row].length; column++) {
+                if (column < 28 && row > 3 && hourObjects[column - 4].getPrice() < getMaxPrice(hourObjects)) {
+                    if ((hourObjects[column - 4].getPrice()) > 100) {
+                        graph[row][column] = " # ";
+                    } else graph[row][column] = "    ";
+                }
+
+
+            }
+        }
+    }
+
+
     private static void addMaxPriceHour(HourObject[] hourObjects, String[][] graph) {
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
-                if (column < 28 && row < graph.length - 3)
+                if (column < 28 && row < graph.length - 2)
                     if (hourObjects[column - 4].getPrice() == getMaxPrice(hourObjects)) {
-                        graph[row][column] = " ##";
-                    } else
-                        graph[row][column] = " OO";
+                        graph[row][column] = " # ";
+                    }
             }
         }
     }
 
     private static void addHourToGraph(HourObject[] hourObjects, int graphHeight, String[][] graph) {
         for (int row = 0; row < graph.length; row++) {
-            for (int column = 3; column < graph[row].length; column++) {
-                if (row == graphHeight - 1 && column < 27) {
+            for (int column = 0; column < graph[row].length; column++) {
 
-                    graph[row][column] = " " + hourObjects[column - 3].getName();
+                if (row == graphHeight - 1 && column <= 4)
+                    graph[row][column] = " ";
+                else if (row == graphHeight - 1 && column < 28) {
+                    graph[row][column] = " " + hourObjects[column - 4].getName();
 
 
                 }
@@ -330,17 +396,17 @@ public class Main {
 
     private static void fillGraphArray(String[][] graph) {
         for (int rows = 0; rows < graph.length; rows++) {
-            Arrays.fill(graph[rows], " ");
+            Arrays.fill(graph[rows], "");
         }
     }
 
     private static void addXYToGraph(int graphHeight, String[][] graph) {
         for (int row = 0; row < graph.length; row++) {
             for (int column = 0; column < graph[row].length; column++) {
-                if (row == graphHeight - 2 && column < 26)
+                if (row == graphHeight - 2 && column < 28)
                     graph[row][column] = "---";
                 else if (column == 3 && row < graph.length - 2) {
-                    graph[row][column] = " |";
+                    graph[row][column] = "|";
                 }
             }
         }
@@ -349,13 +415,12 @@ public class Main {
     private static void addMinMaxToGraph(HourObject[] hourObjects, String[][] graph) {
         for (int row = 0; row < graph.length; row++) {
             for (int column = 0; column < graph[row].length; column++) {
-                if (column == 1)
+                if (column == 0)
                     if (row == 0) {
                         graph[row][column] = Integer.toString(getMaxPrice(hourObjects));
                     } else if (row == graph.length - 3) {
-                        graph[row][column] = Integer.toString(getMinPrice(hourObjects));
-                    } else if (row >= graph.length - 3)
-                        graph[row][column] = "   ";
+                        graph[row][column] = Integer.toString(getMinPrice(hourObjects)) + "  ";
+                    } else graph[row][column] = "   ";
 
             }
 
