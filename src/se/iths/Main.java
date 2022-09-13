@@ -98,7 +98,7 @@ public class Main {
         boolean continueLoop = true;
         while (continueLoop) {
 
-            getUserinput(hourObject, sc);
+            getUserInput(hourObject, sc);
             showInput(hourObject);
             continueLoop = checkInputCorrect(sc);
         }
@@ -137,7 +137,7 @@ public class Main {
         return contLoop;
     }
 
-    private static void getUserinput(HourObject[] hourObject, Scanner sc) {
+    private static void getUserInput(HourObject[] hourObject, Scanner sc) {
         for (int i = 0; i < hourObject.length; i++) {
 
             System.out.println("Ange priset per kW/h för varje timme " + hourObject[i].getName() + " (ange i hela ören.)");
@@ -271,43 +271,77 @@ public class Main {
 
 
         int graphHeight = getMaxPrice(hourObjects);
-        int time = 26;
-        String[][] graph = new String[graphHeight][time];
+        int graphWidth = 29;
+        String[][] graph = new String[graphHeight][graphWidth];
 
-        for (int rows = 0; rows < graph.length; rows++) {
-            Arrays.fill(graph[rows], " ");
-        }
+
+        fillGraphArray(graph);
+        addXYToGraph(graphHeight, graph);
+        addMinMaxToGraph(hourObjects, graph);
+        addHourToGraph(hourObjects, graphHeight, graph);
 
 
         for (int row = 0; row < graph.length; row++) {
-            for (int column = 0; column < graph[row].length; column++) {
+            for (int column = 4; column < graph[row].length; column++) {
+                if (column < 28 && row < graph.length - 3)
+                    if (Integer.toString(column - 4).equals(hourObjects[column - 4].getName()) && hourObjects[column - 4].getPrice() == getMaxPrice(hourObjects)) {
+                        graph[row][column] = " ##";
+                    }
+            }
+        }
 
-                if (row == graphHeight - 2) {
+
+        printGraph(graph);
+
+
+    }
+
+    private static void addHourToGraph(HourObject[] hourObjects, int graphHeight, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 4; column < graph[row].length; column++) {
+                if (row == graphHeight - 1 && column < 28) {
+
+                    graph[row][column] = " " + hourObjects[column - 4].getName();
+
+
+                }
+            }
+        }
+    }
+
+    private static void fillGraphArray(String[][] graph) {
+        for (int rows = 0; rows < graph.length; rows++) {
+            Arrays.fill(graph[rows], " ");
+        }
+    }
+
+    private static void addXYToGraph(int graphHeight, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 0; column < graph[row].length; column++) {
+                if (row == graphHeight - 2)
                     graph[row][column] = "---";
-                } else if (column == 1) {
-                    if (row == 1) {
+                else if (column == 3 && row < graph.length - 2) {
+                    graph[row][column] = "|";
+                }
+            }
+        }
+    }
+
+    private static void addMinMaxToGraph(HourObject[] hourObjects, String[][] graph) {
+        for (int row = 0; row < graph.length; row++) {
+            for (int column = 0; column < graph[row].length; column++) {
+                if (column == 1)
+                    if (row == 0) {
                         graph[row][column] = Integer.toString(getMaxPrice(hourObjects));
                     } else if (row == graph.length - 3) {
-                        graph[row][column] = Integer.toString(getMinPrice(hourObjects)) + "  ";
-                    } else {
+                        graph[row][column] = Integer.toString(getMinPrice(hourObjects));
+                    } else if (row >= graph.length - 3)
                         graph[row][column] = "   ";
-                    }
-                } else if (column == 2 && row < graph.length -2) {
-                    graph[row][column] = " |";
-                } else if (row == graphHeight - 1 && column < 24) {
-                    graph[row][column] = " " + hourObjects[column].getName();
-//                } else if (Integer.toString(column).equals(hourObjects[column].getName()) || hourObjects[column].getPrice() == getMaxPrice(hourObjects)) {
-//                    graph[row][column] = " ##";
-                } else {
-                    graph[row][column] = " ";
-                }
+
             }
 
 
         }
-        printGraph(graph);
-
-
     }
 
 

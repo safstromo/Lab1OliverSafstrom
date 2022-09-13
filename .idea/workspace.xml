@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="fix input">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="working on display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/Main.java" afterDir="false" />
     </list>
@@ -68,7 +68,7 @@
       <workItem from="1662641607372" duration="3115000" />
       <workItem from="1662706328206" duration="5000" />
       <workItem from="1662724704027" duration="370000" />
-      <workItem from="1662961003115" duration="17834000" />
+      <workItem from="1662961003115" duration="20748000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -224,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662647510049</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="working on display">
+      <created>1662993808739</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1662993808739</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +267,8 @@
     <MESSAGE value="cleanup" />
     <MESSAGE value="fix charge4h sort by name" />
     <MESSAGE value="fix input" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix input" />
+    <MESSAGE value="working on display" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on display" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
