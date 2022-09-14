@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="add methods to graph">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="working on graph">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/Main.java" afterDir="false" />
     </list>
@@ -71,7 +71,8 @@
       <workItem from="1662961003115" duration="24794000" />
       <workItem from="1663066444383" duration="77000" />
       <workItem from="1663070874904" duration="679000" />
-      <workItem from="1663075201640" duration="6883000" />
+      <workItem from="1663075201640" duration="7801000" />
+      <workItem from="1663134162027" duration="3034000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -248,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663051522885</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="working on graph">
+      <created>1663086488632</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1663086488632</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +294,8 @@
     <MESSAGE value="fix input" />
     <MESSAGE value="working on display" />
     <MESSAGE value="add methods to graph" />
-    <option name="LAST_COMMIT_MESSAGE" value="add methods to graph" />
+    <MESSAGE value="working on graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on graph" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
