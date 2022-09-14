@@ -157,18 +157,19 @@ public class Main {
     }
 
     public static void printMinMax(Hour[] hours) {
-//TODO add hours in print!
+
         //Import hourObjects and find min,max and average prices and print them.
 
+        sortHourCheapestFirst(hours);
         int minPrice = getMinPrice(hours);
         int maxPrice = getMaxPrice(hours);
         double totalPrice = getTotalPrice(hours);
 
         double averagePrice = (double) totalPrice / 24.0;
 
-        System.out.println("Lägsta priset är " + minPrice);
-        System.out.println("Högsta priset är " + maxPrice);
-        System.out.println("Medelpriset är " + (Math.round(averagePrice)));
+        System.out.println("Lägsta priset är kl " + hours[0].getName() + " --> " + minPrice + " öre");
+        System.out.println("Högsta priset är kl " + hours[23].getName() + " --> " + maxPrice + " öre");
+        System.out.println("Medelpriset är " + (Math.round(averagePrice)) + " öre");
 
     }
 
