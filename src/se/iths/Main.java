@@ -14,7 +14,10 @@ public class Main {
             switch (menu()) {
                 case "1" -> userInput(hour);
                 case "2" -> printMinMax(hour);
-                case "3" -> sortHourCheapestFirst(hour);
+                case "3" -> {
+                    sortHourCheapestFirst(hour);
+                    printSorted(hour);
+                }
                 case "4" -> charge4h(hour);
                 case "5" -> display(hour);
                 case "e" -> continueLoop = false;
@@ -183,7 +186,6 @@ public class Main {
             }
         });
 
-        printSorted(hours);
 
     }
 
@@ -191,7 +193,7 @@ public class Main {
         for (int i = 0; i < hours.length; i++) {
             if (i == hours.length - 1)
                 break;
-            System.out.println(hours[i].getName() + "-" + hours[i + 1].getName() + " -> " + hours[i].getPrice() + " öre");
+            System.out.println("Klockan " + hours[i].getName() + " --> " + hours[i].getPrice() + " öre");
         }
     }
 
