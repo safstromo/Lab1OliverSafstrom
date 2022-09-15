@@ -1,7 +1,7 @@
 package se.iths;
 import java.util.*;
 
-public class Main {
+public class EnergyCalc {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Hour[] hour = new Hour[24];
@@ -160,6 +160,7 @@ public class Main {
             for (int j = 0; j < hours.length; j++) {
                 if (hours[i].getPrice() > maxPrice) {
                     maxPrice = hours[i].getPrice();
+                    break;
                 }
             }
         }
@@ -173,6 +174,7 @@ public class Main {
             for (int j = 0; j < hours.length; j++) {
                 if (hours[i].getPrice() < minPrice) {
                     minPrice = hours[i].getPrice();
+                    break;
                 }
             }
         }
