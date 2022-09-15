@@ -1,28 +1,13 @@
 package se.iths;
-
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         Hour[] hour = new Hour[24];
         createHourObj(hour);
+        menu(hour, sc);
 
-        boolean continueLoop = true;
-        while (continueLoop) {
-
-
-            switch (menu()) {
-                case "1" -> userInput(hour);
-                case "2" -> printMinMax(hour);
-                case "3" -> {
-                    sortHourCheapestFirst(hour);
-                    printSorted(hour);
-                }
-                case "4" -> charge4h(hour);
-                case "5" -> display(hour);
-                case "e" -> continueLoop = false;
-            }
-        }
     }
 
     public static void createHourObj(Hour[] hour) {
@@ -39,49 +24,28 @@ public class Main {
         }
     }
 
-    public static String menu() {
-
-        // Presents menu in console and returns the choise;
-
-        Scanner sc = new Scanner(System.in);
-        String input = "";
+    public static void menu(Hour[] hour, Scanner sc) {
+        // Presents menu in console
 
         boolean validInput = false;
 
-        // Loop until valid input.
+        // Loop until end program.
         while (!validInput) {
 
             printMenu();
 
-            input = sc.nextLine();
-            switch (input) {
-                case "1" -> {
-                    input = "1";
-                    validInput = true;
-                }
-                case "2" -> {
-                    input = "2";
-                    validInput = true;
-                }
+            switch (sc.nextLine()) {
+                case "1" -> userInput(hour, sc);
+                case "2" -> printMinMax(hour);
                 case "3" -> {
-                    input = "3";
-                    validInput = true;
+                    sortHourCheapestFirst(hour);
+                    printSorted(hour);
                 }
-                case "4" -> {
-                    input = "4";
-                    validInput = true;
-                }
-                case "5" -> {
-                    input = "5";
-                    validInput = true;
-                }
-                case "e", "E" -> {
-                    input = "e";
-                    validInput = true;
-                }
+                case "4" -> charge4h(hour);
+                case "5" -> display(hour);
+                case "e", "E" -> validInput = true;
             }
         }
-        return input;
     }
 
     private static void printMenu() {
@@ -94,18 +58,15 @@ public class Main {
         System.out.println("e. Avsluta");
     }
 
-    public static void userInput(Hour[] hour) {
+    public static void userInput(Hour[] hour, Scanner sc) {
         // Asks user for data. Adds data to each hour.
 
-        Scanner sc = new Scanner(System.in);
-        boolean continueLoop = true;
-        while (continueLoop) {
-
+        boolean continueLoop;
+        do{
             getUserInput(hour, sc);
             showInput(hour);
             continueLoop = checkInputCorrect(sc);
-        }
-
+        }while (continueLoop);
     }
 
     private static boolean checkInputCorrect(Scanner sc) {
@@ -120,29 +81,22 @@ public class Main {
                     contLoop = true;
                     validInput = true;
                 }
-                case "N" -> {
-
-                    validInput = true;
-                }
-
+                case "N" -> validInput = true;
                 default -> {
-
                     System.out.println("===========================================");
                     System.out.println("Fel input försök igen!");
                     System.out.println("===========================================");
                     System.out.println();
-
                 }
             }
         }
         while (!validInput);
-
         return contLoop;
     }
 
     private static void getUserInput(Hour[] hour, Scanner sc) {
+        // Ask user for input for each hour.
         for (int i = 0; i < hour.length; i++) {
-
             System.out.println("Ange priset per kW/h för varje timme " + hour[i].getName() + " (ange i hela ören.)");
             try {
                 hour[i].setPrice(sc.nextInt());
@@ -153,6 +107,7 @@ public class Main {
     }
 
     private static void showInput(Hour[] hour) {
+        // Shows the inputs for each hour.
         for (int i = 0; i < hour.length; i++) {
             System.out.println("Du angav: " + hour[i].getPrice() + " öre per kW/h för timme " + hour[i].getName());
         }
@@ -160,36 +115,31 @@ public class Main {
     }
 
     public static void printMinMax(Hour[] hours) {
-
         //Import hourObjects and find min,max and average prices and print them.
 
         sortHourCheapestFirst(hours);
         int minPrice = getMinPrice(hours);
         int maxPrice = getMaxPrice(hours);
         double totalPrice = getTotalPrice(hours);
-
         double averagePrice = (double) totalPrice / 24.0;
 
         System.out.println("Lägsta priset är kl " + hours[0].getName() + " --> " + minPrice + " öre");
         System.out.println("Högsta priset är kl " + hours[23].getName() + " --> " + maxPrice + " öre");
         System.out.println("Medelpriset är " + (Math.round(averagePrice)) + " öre");
-
     }
 
     public static void sortHourCheapestFirst(Hour[] hours) {
-
-        // Sort array and print cheapest objects
+        // Sort array by price and print cheapest objects.
         Arrays.sort(hours, new Comparator<Hour>() {
             @Override
             public int compare(Hour o1, Hour o2) {
                 return Double.compare(o1.getPrice(), o2.getPrice());
             }
         });
-
-
     }
 
     private static void printSorted(Hour[] hours) {
+        // Prints sorted array
         for (int i = 0; i < hours.length; i++) {
             System.out.println("Klockan " + hours[i].getName() + " --> " + hours[i].getPrice() + " öre");
         }
@@ -231,16 +181,13 @@ public class Main {
     }
 
     public static void charge4h(Hour[] hours) {
-
         // Sort objects by name then calculate best 4 hour in a row to charge
         sortByName(hours);
-
 
         int next4hPrice;
         double averagePriceBest4h = 0;
         int bestPrice4hTotal = Integer.MAX_VALUE;
         String nameBestPrice4h = "";
-
 
         for (int i = 0; i < hours.length; i++) {  // Find best 4 hours
             if (i == hours.length - 3) {
@@ -258,6 +205,7 @@ public class Main {
     }
 
     private static void sortByName(Hour[] hours) {
+        // Sort array by name.
         Arrays.sort(hours, new Comparator<Hour>() {
             @Override
             public int compare(Hour o1, Hour o2) {
@@ -272,16 +220,14 @@ public class Main {
     }
 
     public static void display(Hour[] hours) {
+        // Display graph of each hour with prices.
 
         int graphHeight = 20;
         int graphWidth = 29;
         String[][] graph = new String[graphHeight][graphWidth];
 
-
         sortByName(hours);
         fillGraphArray(graph);
-
-
         addPriceOver0(hours, graph);
         addPricesOver50(hours, graph);
         addPricesOver100(hours, graph);
@@ -291,13 +237,12 @@ public class Main {
         addXYToGraph(graphHeight, graph);
         addMinMaxToGraph(hours, graph);
         addHourToGraph(hours, graphHeight, graph);
-
         printGraph(graph);
-
-
     }
 
     private static void addPriceOver0(Hour[] hours, String[][] graph) {
+        // Adds price to graph if price is not 0.
+
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 16 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
@@ -306,12 +251,12 @@ public class Main {
                     }
                 } else graph[row][column] = "   ";
             }
-
-
         }
     }
 
     private static void addPricesOver50(Hour[] hours, String[][] graph) {
+        // Adds price to graph if price is over 50.
+
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 12 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
@@ -320,13 +265,12 @@ public class Main {
                     }
                 }
             }
-
-
         }
     }
 
-
     private static void addPricesOver100(Hour[] hours, String[][] graph) {
+        // Adds price to graph if price is over 100.
+
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 9 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
@@ -335,12 +279,12 @@ public class Main {
                     }
                 }
             }
-
-
         }
     }
 
     private static void addPricesOver200(Hour[] hours, String[][] graph) {
+        // Adds price to graph if price is over 200.
+
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 6 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
@@ -349,13 +293,12 @@ public class Main {
                     }
                 }
             }
-
-
         }
     }
 
-
     private static void addPricesOver300(Hour[] hours, String[][] graph) {
+        // Adds price to graph if price is over 300.
+
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 3 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
@@ -364,14 +307,12 @@ public class Main {
                         graph[row][column] = " = ";
                     }
                 }
-
-
             }
         }
     }
 
-
     private static void addMaxPriceHour(Hour[] hours, String[][] graph) {
+        // Fill graph for the hour with the highest price.
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row < graph.length - 2)
@@ -383,27 +324,27 @@ public class Main {
     }
 
     private static void addHourToGraph(Hour[] hours, int graphHeight, String[][] graph) {
+        // Adds the names of the hours to the graph.
         for (int row = 0; row < graph.length; row++) {
             for (int column = 0; column < graph[row].length; column++) {
-
                 if (row == graphHeight - 1 && column < 4)
                     graph[row][column] = " ";
                 else if (row == graphHeight - 1 && column < 28) {
                     graph[row][column] = hours[column - 4].getName() + " ";
-
-
                 }
             }
         }
     }
 
     private static void fillGraphArray(String[][] graph) {
+        //Fill array with empty string.
         for (int rows = 0; rows < graph.length; rows++) {
             Arrays.fill(graph[rows], "");
         }
     }
 
     private static void addXYToGraph(int graphHeight, String[][] graph) {
+        // adds XY axel to graph.
         for (int row = 0; row < graph.length; row++) {
             for (int column = 0; column < graph[row].length; column++) {
                 if (row == graphHeight - 2 && column < 28)
@@ -416,6 +357,7 @@ public class Main {
     }
 
     private static void addMinMaxToGraph(Hour[] hours, String[][] graph) {
+        // Adds the min and max price to X axel.
         for (int row = 0; row < graph.length; row++) {
             for (int column = 0; column < graph[row].length; column++) {
                 if (column == 0)
@@ -424,19 +366,15 @@ public class Main {
                     } else if (row == graph.length - 3) {
                         graph[row][column] = Integer.toString(getMinPrice(hours)) + "  ";
                     } else graph[row][column] = "   ";
-
             }
-
-
         }
     }
-
 
     private static void printGraph(String[][] graph) {
         for (int row = 0; row < graph.length; row++) {
             System.out.println();
-            for (int collumn = 0; collumn < graph[row].length; collumn++) {
-                System.out.print(graph[row][collumn]);
+            for (int column = 0; column < graph[row].length; column++) {
+                System.out.print(graph[row][column]);
             }
         }
     }

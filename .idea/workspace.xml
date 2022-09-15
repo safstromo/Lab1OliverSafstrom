@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="fix sort">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/Main.java" afterDir="false" />
     </list>
@@ -97,6 +97,7 @@
       <workItem from="1663146419189" duration="148000" />
       <workItem from="1663151592373" duration="2564000" />
       <workItem from="1663157573214" duration="1345000" />
+      <workItem from="1663218864945" duration="2920000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -308,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663155615628</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="cleanup">
+      <created>1663219177895</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1663219177895</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,7 +349,6 @@
     <MESSAGE value="Cleanup minMax" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="fix user input" />
-    <MESSAGE value="cleanup" />
     <MESSAGE value="fix charge4h sort by name" />
     <MESSAGE value="fix input" />
     <MESSAGE value="working on display" />
@@ -351,7 +358,8 @@
     <MESSAGE value="change class name Hour" />
     <MESSAGE value="fix printMinMax" />
     <MESSAGE value="fix sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix sort" />
+    <MESSAGE value="cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
