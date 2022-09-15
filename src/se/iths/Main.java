@@ -17,7 +17,7 @@ public class Main {
         }
         for (int i = 0; i < hour.length; i++) {
             if (i <= 9) {
-                hour[i].setName("0" + Integer.toString(i));
+                hour[i].setName("0" + i);
             } else {
                 hour[i].setName(Integer.toString(i));
             }
@@ -30,7 +30,7 @@ public class Main {
         boolean validInput = false;
 
         // Loop until end program.
-        while (!validInput) {
+        do {
 
             printMenu();
 
@@ -45,7 +45,7 @@ public class Main {
                 case "5" -> display(hour);
                 case "e", "E" -> validInput = true;
             }
-        }
+        }while (!validInput);
     }
 
     private static void printMenu() {
@@ -61,16 +61,15 @@ public class Main {
     public static void userInput(Hour[] hour, Scanner sc) {
         // Asks user for data. Adds data to each hour.
 
-        boolean continueLoop;
         do{
             getUserInput(hour, sc);
             showInput(hour);
-            continueLoop = checkInputCorrect(sc);
-        }while (continueLoop);
+
+        }while (checkInputCorrect(sc));
     }
 
     private static boolean checkInputCorrect(Scanner sc) {
-        boolean contLoop = false;
+        boolean continueLoop = false;
         boolean validInput = false;
 
         do {
@@ -78,7 +77,7 @@ public class Main {
             String pricesAgain = sc.next().toUpperCase();
             switch (pricesAgain) {
                 case "Y" -> {
-                    contLoop = true;
+                    continueLoop = true;
                     validInput = true;
                 }
                 case "N" -> validInput = true;
@@ -91,7 +90,7 @@ public class Main {
             }
         }
         while (!validInput);
-        return contLoop;
+        return continueLoop;
     }
 
     private static void getUserInput(Hour[] hour, Scanner sc) {
@@ -121,7 +120,7 @@ public class Main {
         int minPrice = getMinPrice(hours);
         int maxPrice = getMaxPrice(hours);
         double totalPrice = getTotalPrice(hours);
-        double averagePrice = (double) totalPrice / 24.0;
+        double averagePrice = totalPrice / 24.0;
 
         System.out.println("Lägsta priset är kl " + hours[0].getName() + " --> " + minPrice + " öre");
         System.out.println("Högsta priset är kl " + hours[23].getName() + " --> " + maxPrice + " öre");
@@ -185,7 +184,7 @@ public class Main {
         sortByName(hours);
 
         int next4hPrice;
-        double averagePriceBest4h = 0;
+        double averagePriceBest4h;
         int bestPrice4hTotal = Integer.MAX_VALUE;
         String nameBestPrice4h = "";
 
@@ -364,7 +363,7 @@ public class Main {
                     if (row == 0) {
                         graph[row][column] = Integer.toString(getMaxPrice(hours));
                     } else if (row == graph.length - 3) {
-                        graph[row][column] = Integer.toString(getMinPrice(hours)) + "  ";
+                        graph[row][column] = getMinPrice(hours) + "  ";
                     } else graph[row][column] = "   ";
             }
         }
