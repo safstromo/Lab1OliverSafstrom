@@ -191,8 +191,6 @@ public class Main {
 
     private static void printSorted(Hour[] hours) {
         for (int i = 0; i < hours.length; i++) {
-            if (i == hours.length - 1)
-                break;
             System.out.println("Klockan " + hours[i].getName() + " --> " + hours[i].getPrice() + " öre");
         }
     }
@@ -302,9 +300,9 @@ public class Main {
     private static void addPriceOver0(Hour[] hours, String[][] graph) {
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
-                if (column < 28 && row > 15 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
+                if (column < 28 && row > 16 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
                     if (hours[column - 4].getPrice() > 1) {
-                        graph[row][column] = " # ";
+                        graph[row][column] = " = ";
                     }
                 } else graph[row][column] = "   ";
             }
@@ -318,9 +316,9 @@ public class Main {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 12 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
                     if (hours[column - 4].getPrice() > 50) {
-                        graph[row][column] = " # ";
+                        graph[row][column] = " = ";
                     }
-                } //else graph[row][column] = "   ";
+                }
             }
 
 
@@ -333,9 +331,9 @@ public class Main {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 9 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
                     if (hours[column - 4].getPrice() > 100) {
-                        graph[row][column] = " # ";
+                        graph[row][column] = " = ";
                     }
-                } //else graph[row][column] = "   ";
+                }
             }
 
 
@@ -347,9 +345,9 @@ public class Main {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row > 6 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
                     if (hours[column - 4].getPrice() > 200) {
-                        graph[row][column] = " # ";
+                        graph[row][column] = " = ";
                     }
-                }// else graph[row][column] = "   ";
+                }
             }
 
 
@@ -363,9 +361,9 @@ public class Main {
                 if (column < 28 && row > 3 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
 
                     if (hours[column - 4].getPrice() > 300) {
-                        graph[row][column] = " # ";
+                        graph[row][column] = " = ";
                     }
-                }//else graph[row][column] = "   ";
+                }
 
 
             }
@@ -378,7 +376,7 @@ public class Main {
             for (int column = 4; column < graph[row].length; column++) {
                 if (column < 28 && row < graph.length - 2)
                     if (hours[column - 4].getPrice() == getMaxPrice(hours)) {
-                        graph[row][column] = " # ";
+                        graph[row][column] = " = ";
                     }
             }
         }
