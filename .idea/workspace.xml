@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="cleanup code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/iths/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/EnergyCalc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/iths/EnergyCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/EnergyCalc.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +101,8 @@
       <workItem from="1663218864945" duration="8663000" />
       <workItem from="1663232491367" duration="669000" />
       <workItem from="1663233835206" duration="1499000" />
+      <workItem from="1663237846087" duration="402000" />
+      <workItem from="1663238607950" duration="331000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -333,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663227254243</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="cleanup code">
+      <created>1663237895318</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1663237895318</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

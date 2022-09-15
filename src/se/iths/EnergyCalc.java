@@ -74,7 +74,7 @@ public class EnergyCalc {
 
         do {
             System.out.println("Vill du ange priserna på nytt? (Y/N)");
-            String pricesAgain = sc.next().toUpperCase();
+            String pricesAgain = sc.nextLine().toUpperCase();
             switch (pricesAgain) {
                 case "Y" -> {
                     continueLoop = true;
