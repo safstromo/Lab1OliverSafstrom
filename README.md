@@ -2,4 +2,4 @@
 
 ITHS
 Labb 1
-Av Oliver Säström
+Av Oliver Säfström
