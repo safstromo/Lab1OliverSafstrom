@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="Fix menu input">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="Fix best4h out of bound bug">
       <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1OliverSafstrom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1OliverSafstrom.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/iths/EnergyCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/EnergyCalc.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +111,7 @@
       <workItem from="1663434631478" duration="1000000" />
       <workItem from="1663663474526" duration="606000" />
       <workItem from="1663670362407" duration="14000" />
+      <workItem from="1664177312976" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -356,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663239135644</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Fix best4h out of bound bug">
+      <created>1664177638473</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1664177638474</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +383,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add minMax, add sorting update" />
     <MESSAGE value="add hour object" />
     <MESSAGE value="update userInput" />
     <MESSAGE value="update Min/max" />
@@ -399,7 +407,8 @@
     <MESSAGE value="cleanup" />
     <MESSAGE value="cleanup code" />
     <MESSAGE value="Fix menu input" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix menu input" />
+    <MESSAGE value="Fix best4h out of bound bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix best4h out of bound bug" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
