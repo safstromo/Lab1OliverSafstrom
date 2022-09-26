@@ -229,11 +229,11 @@ public class EnergyCalc {
 
         sortByName(hours);
         fillGraphArray(graph);
-        addPriceOver0(hours, graph);
-        addPricesOver50(hours, graph);
-        addPricesOver100(hours, graph);
-        addPricesOver200(hours, graph);
-        addPricesOver300(hours, graph);
+        addPrices(hours, graph, 16,1);
+        addPrices(hours, graph, 12,50);
+        addPrices(hours, graph,9,100);
+        addPrices(hours,graph,6,200);
+        addPrices(hours, graph,3,300);
         addMaxPriceHour(hours, graph);
         addXYToGraph(graphHeight, graph);
         addMinMaxToGraph(hours, graph);
@@ -241,70 +241,13 @@ public class EnergyCalc {
         printGraph(graph);
     }
 
-    private static void addPriceOver0(Hour[] hours, String[][] graph) {
-        // Adds price to graph if price is not 0.
+    private static void addPrices(Hour[] hours, String[][] graph,int rowsStart, int fromPrice) {
+        // Adds price to graph
 
         for (int row = 0; row < graph.length; row++) {
             for (int column = 4; column < graph[row].length; column++) {
-                if (column < 28 && row > 16 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
-                    if (hours[column - 4].getPrice() > 1) {
-                        graph[row][column] = " = ";
-                    }
-                } else graph[row][column] = "   ";
-            }
-        }
-    }
-
-    private static void addPricesOver50(Hour[] hours, String[][] graph) {
-        // Adds price to graph if price is over 50.
-
-        for (int row = 0; row < graph.length; row++) {
-            for (int column = 4; column < graph[row].length; column++) {
-                if (column < 28 && row > 12 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
-                    if (hours[column - 4].getPrice() > 50) {
-                        graph[row][column] = " = ";
-                    }
-                }
-            }
-        }
-    }
-
-    private static void addPricesOver100(Hour[] hours, String[][] graph) {
-        // Adds price to graph if price is over 100.
-
-        for (int row = 0; row < graph.length; row++) {
-            for (int column = 4; column < graph[row].length; column++) {
-                if (column < 28 && row > 9 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
-                    if (hours[column - 4].getPrice() > 100) {
-                        graph[row][column] = " = ";
-                    }
-                }
-            }
-        }
-    }
-
-    private static void addPricesOver200(Hour[] hours, String[][] graph) {
-        // Adds price to graph if price is over 200.
-
-        for (int row = 0; row < graph.length; row++) {
-            for (int column = 4; column < graph[row].length; column++) {
-                if (column < 28 && row > 6 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
-                    if (hours[column - 4].getPrice() > 200) {
-                        graph[row][column] = " = ";
-                    }
-                }
-            }
-        }
-    }
-
-    private static void addPricesOver300(Hour[] hours, String[][] graph) {
-        // Adds price to graph if price is over 300.
-
-        for (int row = 0; row < graph.length; row++) {
-            for (int column = 4; column < graph[row].length; column++) {
-                if (column < 28 && row > 3 && hours[column - 4].getPrice() < getMaxPrice(hours)) {
-
-                    if (hours[column - 4].getPrice() > 300) {
+                if (column < 28 && row > rowsStart && hours[column - 4].getPrice() < getMaxPrice(hours)) {
+                    if (hours[column - 4].getPrice() > fromPrice) {
                         graph[row][column] = " = ";
                     }
                 }
