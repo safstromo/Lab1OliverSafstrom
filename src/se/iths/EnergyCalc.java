@@ -191,7 +191,7 @@ public class EnergyCalc {
         String nameBestPrice4h = "";
 
         for (int i = 0; i < hours.length; i++) {  // Find best 4 hours
-            if (i == hours.length - 3) {
+            if (i == hours.length - 4) {
                 break;
             }
             next4hPrice = hours[i].getPrice() + hours[i + 1].getPrice() + hours[i + 2].getPrice() + hours[i + 3].getPrice();

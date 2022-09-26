@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="cleanup code">
+    <list default="true" id="fa7823dc-a95a-4685-a540-7dd55f0d58b9" name="Changes" comment="Fix menu input">
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/iths/EnergyCalc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/iths/EnergyCalc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1OliverSafstrom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1OliverSafstrom.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -36,6 +39,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -102,7 +106,10 @@
       <workItem from="1663232491367" duration="669000" />
       <workItem from="1663233835206" duration="1499000" />
       <workItem from="1663237846087" duration="402000" />
-      <workItem from="1663238607950" duration="331000" />
+      <workItem from="1663238607950" duration="1121000" />
+      <workItem from="1663434631478" duration="1000000" />
+      <workItem from="1663663474526" duration="606000" />
+      <workItem from="1663670362407" duration="14000" />
     </task>
     <task id="LOCAL-00001" summary="add menu">
       <created>1662049633127</created>
@@ -342,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663237895318</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Fix menu input">
+      <created>1663239135644</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1663239135644</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +374,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add minMax, add sorting" />
     <MESSAGE value="add minMax, add sorting update" />
     <MESSAGE value="add hour object" />
     <MESSAGE value="update userInput" />
@@ -385,7 +398,8 @@
     <MESSAGE value="fix sort" />
     <MESSAGE value="cleanup" />
     <MESSAGE value="cleanup code" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanup code" />
+    <MESSAGE value="Fix menu input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix menu input" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
