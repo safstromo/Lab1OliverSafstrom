@@ -6,3 +6,4 @@ Av Oliver Säfström
 
 
 Small console app to calculate energy
+Goal was to practice basic Java syntax
